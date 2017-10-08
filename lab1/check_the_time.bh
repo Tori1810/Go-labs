@@ -1,0 +1,7 @@
+#!/bin/bash
+
+START=$(date +%s)
+go test -timeout 20000s
+END=$(date +%s)
+DIFF=$(( $END - $START ))
+echo "It took $DIFF seconds"
