@@ -1,6 +1,7 @@
 
 package code
-
+//package main
+//import "fmt"
 
 func F1(line string, symb byte) (int, bool){  
 	line_len := len(line)
@@ -72,8 +73,8 @@ func Task(line string, mask string) string{
 
 
 
-// func main(){
-// 	// fmt.Println(task("ba bbbac", "b*a**"))   
-// }
+//func main(){
+ 	//fmt.Println(task("ba bbbac", "b*a**"))   
+//}
 
 
