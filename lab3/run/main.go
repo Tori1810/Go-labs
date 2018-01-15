@@ -1,7 +1,10 @@
 
 package main
 import "fmt"
+import "sync"
 import s "strings"
+
+var result string = "";
 
 
 func F3(mask string, line string, k int) (int, bool){
@@ -38,23 +41,40 @@ func F3(mask string, line string, k int) (int, bool){
 
 
 func Task(line string, mask string) string{
+	var wg sync.WaitGroup
 	line_len := len(line); 
-	result:=""; 
-	for i:=0; i<line_len; i++{  
-		start_index:=i; 
-		var k, error = F3(mask, line, i)
+
+	for i:=0; i<line_len-line_len%4; i+=4{ 
+		wg.Add(4)
+		go gorutine(i, mask, line,  &wg);
+		go gorutine(i+1, mask, line,  &wg);
+		go gorutine(i+2, mask, line,  &wg);
+		go gorutine(i+3, mask, line,  &wg);
+		wg.Wait()
+	}
+	for i:=0; i<line_len%4; i++{
+		start_index:=line_len - i -1; 
+		var k, error = F3(mask, line, line_len - i -1);
 		if !error{  
-			result =result + "  " + line[start_index: k]
+			result =result + "  " + line[start_index: k];
 		}
 	}
+	
 	return result
+}
+
+func gorutine(i int, mask string, line string,  wg *sync.WaitGroup){
+	start_index:=i; 
+	var k, error = F3(mask, line, i);
+	if !error{  
+		result =result + "  " + line[start_index: k];
+	}
+	wg.Done()
 }
 
 
 func main(){
-	fmt.Println(Task("ba bbbac", "ba**")) 
-
- 	  
+	fmt.Println(Task("bacdbacd ba", "ba**"));   
 }
 
 

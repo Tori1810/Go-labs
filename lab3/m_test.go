@@ -2,16 +2,16 @@ package main
 
 import(	"testing"
  		"io/ioutil"
-		"labs/lab1/code"
+		"labs/lab3/code"
 )
 
- func TestFull(t *testing.T) {
+func TestFull(t *testing.T) {
 	
-     contents,_ := ioutil.ReadFile("tests.txt")
+    contents,_ := ioutil.ReadFile("tests.txt")
  	var str = string(contents)
         
-     ioutil.WriteFile("output.txt", []byte(code.Task(str, "a*****b*****c")), 0644)
- }
+    ioutil.WriteFile("output.txt", []byte(code.Task(str, "a*****b*****c")), 0644)
+}
 
 /*func TestShort(t *testing.T) {
 	

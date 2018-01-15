@@ -2,7 +2,7 @@ package main
 
 import(	"testing"
  		"io/ioutil"
-		"labs/lab1/code"
+		"labs/lab2/code"
 )
 
  func TestFull(t *testing.T) {
